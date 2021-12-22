@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/teams' => 'teams#index'
       post '/teams' => 'teams#create'
+
+      resources :todos
     end
   end
 end
