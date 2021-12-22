@@ -31,9 +31,9 @@ class Api::V1::TodosController < ApplicationController
     @todo = Todo.new(todo_params)
 
     if @todo.save
-      render json: @todo, status: :created, location: @todo
+      render json: @todo, status: :created, location: api_v1_todos_path(@todo)
     else
-      render json: @todo.errors, status: :unprocessable_entity, location: @todo
+      render json: @todo.errors, status: :unprocessable_entity, location: api_v1_todos_path(@todo)
     end
   end
 
@@ -49,11 +49,6 @@ class Api::V1::TodosController < ApplicationController
   # DELETE /todos/1 or /todos/1.json
   def destroy
     @todo.destroy
-
-    respond_to do |format|
-      format.html { redirect_to todos_url, notice: "Todo was successfully destroyed." }
-      format.json { head :no_content }
-    end
   end
 
   private
